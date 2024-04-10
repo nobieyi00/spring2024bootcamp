@@ -1,0 +1,14 @@
+{
+	"name": "spring2024adf",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "27f187bc-4d82-427e-9129-2064ca0edc1a",
+		"tenantId": "004c5b07-ce82-49b4-ba54-b08c0e4a40ce"
+	}
+}
