@@ -153,7 +153,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "customer",
+						"fileName": "Customer_Github",
 						"folderPath": "incoming",
 						"fileSystem": "landing"
 					},
