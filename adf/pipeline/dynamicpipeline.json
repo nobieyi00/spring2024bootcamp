@@ -47,7 +47,10 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"schemaname": "SalesLT",
-							"tablename": "Address"
+							"tablename": {
+								"value": "@pipeline().parameters.Tablename",
+								"type": "Expression"
+							}
 						}
 					}
 				],
@@ -58,12 +61,20 @@
 						"parameters": {
 							"filesystem": "landing",
 							"directory": "incoming",
-							"filename": "Address"
+							"filename": {
+								"value": "@pipeline().parameters.Tablename",
+								"type": "Expression"
+							}
 						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"Tablename": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
