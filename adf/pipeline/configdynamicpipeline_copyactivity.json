@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "configdynamicpipeline_copyactivity",
 	"properties": {
 		"activities": [
 			{
