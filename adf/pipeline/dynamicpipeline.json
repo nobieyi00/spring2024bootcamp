@@ -47,7 +47,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"schemaname": "SalesLT",
-							"tablename": "Product"
+							"tablename": "Address"
 						}
 					}
 				],
@@ -58,7 +58,7 @@
 						"parameters": {
 							"filesystem": "landing",
 							"directory": "incoming",
-							"filename": "Product"
+							"filename": "Address"
 						}
 					}
 				]
