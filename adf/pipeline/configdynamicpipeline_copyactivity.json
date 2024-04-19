@@ -56,7 +56,7 @@
 						"type": "Expression"
 					},
 					"isSequential": false,
-					"batchCount": 10,
+					"batchCount": 2,
 					"activities": [
 						{
 							"name": "Copy data1",
