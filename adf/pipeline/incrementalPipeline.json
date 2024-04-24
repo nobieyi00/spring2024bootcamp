@@ -17,6 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select * from SalesLT.Customer where ModifiedDate >= (select max(ModifiedDate) from dbo.TargetCustomer)\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
