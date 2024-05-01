@@ -153,7 +153,7 @@
 				"typeProperties": {
 					"variableName": "incrementaldate",
 					"value": {
-						"value": "@activity('extract_incremental date').output.value",
+						"value": "@activity('extract_incremental date').output.value[0]",
 						"type": "Expression"
 					}
 				}
@@ -161,7 +161,7 @@
 		],
 		"variables": {
 			"incrementaldate": {
-				"type": "Array"
+				"type": "String"
 			}
 		},
 		"annotations": []
