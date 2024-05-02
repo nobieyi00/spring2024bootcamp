@@ -103,14 +103,7 @@
 			{
 				"name": "Capture ETL start time",
 				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "Update control table with ETL start time",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -164,7 +157,14 @@
 			{
 				"name": "Update control table with ETL start time",
 				"type": "Script",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Load from Stage to Target",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
