@@ -105,6 +105,7 @@
 			},
 			{
 				"name": "Capture ETL Cut off date",
+				"description": "by using the max last modified date of the target table",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
