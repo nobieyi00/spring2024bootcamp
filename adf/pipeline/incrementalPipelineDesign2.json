@@ -24,10 +24,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": {
-							"value": "@concat('select * from SalesLT.Customer where ModifiedDate >= ',variables('incrementaldate'))",
-							"type": "Expression"
-						},
+						"sqlReaderQuery": "select * from SalesLT.Customer where ModifiedDate >= (select max(lastextractdate) as incrdate from dbo.controltable)",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -104,9 +101,16 @@
 				}
 			},
 			{
-				"name": "extract_incremental date",
+				"name": "Capture ETL start time",
 				"type": "Lookup",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Update control table with ETL start time",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -118,7 +122,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select max(lastextractdate) as incrdate from dbo.controltable",
+						"sqlReaderQuery": "select cast(getdate() as date) incrdate",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -138,7 +142,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "extract_incremental date",
+						"activity": "Capture ETL start time",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -152,22 +156,15 @@
 				"typeProperties": {
 					"variableName": "incrementaldate",
 					"value": {
-						"value": "@substring(activity('extract_incremental date').output.value[0]['incrdate'],0,10)\n\n",
+						"value": "@substring(activity('Capture ETL start time').output.value[0]['incrdate'],0,10)\n\n",
 						"type": "Expression"
 					}
 				}
 			},
 			{
-				"name": "Update control table to new date",
+				"name": "Update control table with ETL start time",
 				"type": "Script",
-				"dependsOn": [
-					{
-						"activity": "Set variable1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -184,7 +181,10 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "Update dbo.controltable\nset lastextractdate = getdate()"
+							"text": {
+								"value": "@concat('Update dbo.controltable set lastextractdate = ''',variables('incrementaldate'),'''')",
+								"type": "Expression"
+							}
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
@@ -193,7 +193,8 @@
 		],
 		"variables": {
 			"incrementaldate": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "2024-01-01"
 			}
 		},
 		"annotations": []
