@@ -26,8 +26,37 @@
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "capture ETL cutoff date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "incrementaldate",
+					"value": {
+						"value": "@activity('capture ETL cutoff date').output.firstRow",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"incrementaldate": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
