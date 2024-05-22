@@ -1,0 +1,13 @@
+{
+	"name": "AzureDatabricks1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-3286552387924349.9.azuredatabricks.net",
+			"authentication": "MSI",
+			"workspaceResourceId": "/subscriptions/75adad68-cca6-4cc2-b266-9eb5330fb50d/resourceGroups/spring2024bootcamp/providers/Microsoft.Databricks/workspaces/demoworkspace",
+			"existingClusterId": "0510-000823-s77phy8k"
+		}
+	}
+}
