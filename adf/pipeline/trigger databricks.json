@@ -15,7 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Testnotebook"
+					"notebookPath": "/Lesson 2",
+					"baseParameters": {
+						"variable_string": "hello"
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "AzureDatabricks1",
