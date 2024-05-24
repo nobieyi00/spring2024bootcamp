@@ -7,14 +7,7 @@
 			"domain": "https://adb-3286552387924349.9.azuredatabricks.net",
 			"authentication": "MSI",
 			"workspaceResourceId": "/subscriptions/75adad68-cca6-4cc2-b266-9eb5330fb50d/resourceGroups/spring2024bootcamp/providers/Microsoft.Databricks/workspaces/demoworkspace",
-			"newClusterNodeType": "Standard_DS4_v2",
-			"newClusterNumOfWorker": "1",
-			"newClusterSparkEnvVars": {
-				"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
-			},
-			"newClusterVersion": "13.3.x-scala2.12",
-			"clusterOption": "Fixed",
-			"newClusterInitScripts": []
+			"existingClusterId": "0510-000823-s77phy8k"
 		}
 	}
 }
