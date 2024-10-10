@@ -10,8 +10,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Customer",
-				"folderPath": "incoming",
+				"fileName": {
+					"value": "@concat('Customer_',utcNow())",
+					"type": "Expression"
+				},
+				"folderPath": "incoming/Customer",
 				"fileSystem": "adfstore"
 			},
 			"columnDelimiter": ",",
